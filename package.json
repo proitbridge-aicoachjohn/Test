@@ -1,0 +1,9 @@
+{
+  "name": "codex-agent-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node test/login.test.js"
+  }
+}
