@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codex Agent Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #f6f9fc;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 15px;
+      background: #0a2540;
+      color: #fff;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    #theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 6px;
+      background: #ffffff33;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #theme-toggle:hover {
+      background: #ffffff55;
+    }
+
+    .chat-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .chat-box {
+      width: 90%;
+      max-width: 600px;
+      height: 400px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 15px;
+      overflow-y: auto;
+      transition: background 0.3s;
+    }
+
+    .bot-msg, .user-msg {
+      margin: 10px 0;
+      padding: 10px 15px;
+      border-radius: 10px;
+      max-width: 80%;
+    }
+
+    .bot-msg {
+      background: #e8f0fe;
+      align-self: flex-start;
+    }
+
+    .user-msg {
+      background: #d1f7c4;
+      align-self: flex-end;
+      text-align: right;
+    }
+
+    .input-area {
+      width: 90%;
+      max-width: 600px;
+      display: flex;
+      margin-top: 15px;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px 0 0 10px;
+      outline: none;
+    }
+
+    .input-area button {
+      padding: 10px 20px;
+      border: none;
+      background: #0a2540;
+      color: white;
+      border-radius: 0 10px 10px 0;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .input-area button:hover {
+      background: #004080;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #0a2540;
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    /* DARK MODE */
+    body.dark {
+      background: #0d1117;
+      color: #e6edf3;
+    }
+
+    body.dark header {
+      background: #161b22;
+    }
+
+    body.dark .chat-box {
+      background: #161b22;
+    }
+
+    body.dark .bot-msg {
+      background: #21262d;
+    }
+
+    body.dark .user-msg {
+      background: #2ea043;
+      color: white;
+    }
+
+    body.dark footer {
+      background: #161b22;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🤖 Codex Agent</h1>
+    <p>Explore the power of AI automation — built for developers & creators.</p>
+    <button id="theme-toggle">🌙 Dark Mode</button>
+  </header>
+
+  <main>
+    <section class="chat-section">
+      <div id="chat-box" class="chat-box">
+        <div class="bot-msg">👋 Hi there! I'm Codex Agent. How can I assist you today?</div>
+      </div>
+
+      <div class="input-area">
+        <input type="text" id="user-input" placeholder="Type your message..." />
+        <button id="send-btn">Send</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Codex Agent | Built by PROITBRIDGE</p>
+  </footer>
+
+  <script>
+    const chatBox = document.getElementById("chat-box");
+    const userInput = document.getElementById("user-input");
+    const sendBtn = document.getElementById("send-btn");
+    const themeToggle = document.getElementById("theme-toggle");
+
+    sendBtn.addEventListener("click", sendMessage);
+    userInput.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") sendMessage();
+    });
+
+    function sendMessage() {
+      const msg = userInput.value.trim();
+      if (!msg) return;
+
+      const userMsg = document.createElement("div");
+      userMsg.classList.add("user-msg");
+      userMsg.textContent = msg;
+      chatBox.appendChild(userMsg);
+
+      setTimeout(() => {
+        const botMsg = document.createElement("div");
+        botMsg.classList.add("bot-msg");
+        botMsg.textContent = generateReply(msg);
+        chatBox.appendChild(botMsg);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 600);
+
+      userInput.value = "";
+    }
+
+    function generateReply(input) {
+      input = input.toLowerCase();
+      if (input.includes("hello") || input.includes("hi"))
+        return "Hey there 👋! I'm your Codex Agent — ready to help!";
+      if (input.includes("what can you do"))
+        return "I can automate workflows, analyze data, and build AI apps. 🚀";
+      if (input.includes("bye"))
+        return "Goodbye! 👋 Keep exploring with Codex Agent.";
+      return "Interesting! Tell me more...";
+    }
+
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      const isDark = document.body.classList.contains("dark");
+      themeToggle.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+    });
+  </script>
+</body>
+</html>
