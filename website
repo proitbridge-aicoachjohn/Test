@@ -122,33 +122,190 @@
     }
 
     header {
-      text-align: center;
-      padding: 30px 15px;
+      padding: 30px 20px 36px;
       background: #0a2540;
       color: #fff;
-      position: relative;
     }
 
-    header h1 {
+    .header-bar {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .brand h1 {
       font-size: 2rem;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
+    }
+
+    .brand p {
+      font-size: 0.95rem;
+      color: #d2d9e5;
+    }
+
+    .header-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .primary-nav {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid #ffffff40;
+      background: #ffffff22;
+      color: inherit;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.3s, border 0.3s;
+    }
+
+    .menu-toggle:hover {
+      background: #ffffff33;
+      border-color: #ffffff55;
+    }
+
+    .nav-links {
+      list-style: none;
+      margin-top: 12px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: #ffffff12;
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 0;
+      display: block;
+      border-bottom: 1px solid transparent;
+      transition: border 0.3s;
+    }
+
+    .nav-links li:last-child a {
+      border-bottom: none;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      border-color: #4fd1c5;
     }
 
     #theme-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      padding: 8px 15px;
+      align-self: flex-start;
+      padding: 8px 18px;
       border: none;
-      border-radius: 6px;
-      background: #ffffff33;
+      border-radius: 999px;
+      background: #ffffff1f;
       color: white;
       cursor: pointer;
       transition: background 0.3s;
     }
 
     #theme-toggle:hover {
-      background: #ffffff55;
+      background: #ffffff33;
+    }
+
+    .info-panels {
+      display: grid;
+      gap: 20px;
+      width: 100%;
+      max-width: 960px;
+      margin: 30px auto 0;
+      padding: 0 20px;
+    }
+
+    .info-card {
+      background: #fff;
+      color: #0a2540;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 16px 30px rgba(10, 37, 64, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 40px rgba(10, 37, 64, 0.15);
+    }
+
+    .info-card h2 {
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .info-card p {
+      line-height: 1.5;
+      color: #334155;
+    }
+
+    @media (min-width: 768px) {
+      .header-bar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .header-controls {
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .primary-nav {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        border: none;
+      }
+
+      .nav-links a {
+        padding: 0;
+        border-bottom: 2px solid transparent;
+      }
+
+      .nav-links li:last-child a {
+        border-bottom: 2px solid transparent;
+      }
+
+      #theme-toggle {
+        align-self: center;
+      }
+
+      .info-panels {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
     }
 
     .chat-section {
@@ -156,7 +313,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px;
+      padding: 40px 20px 20px;
     }
 
     .chat-box {
@@ -239,6 +396,52 @@
 
     body.dark header {
       background: #161b22;
+    }
+
+    body.dark .brand p {
+      color: #9da7bb;
+    }
+
+    body.dark .menu-toggle {
+      border-color: #30363d;
+      background: #30363d;
+    }
+
+    body.dark .menu-toggle:hover {
+      background: #3a4557;
+      border-color: #3a4557;
+    }
+
+    body.dark .nav-links a {
+      color: #e6edf3;
+    }
+
+    body.dark .nav-links a:hover,
+    body.dark .nav-links a:focus {
+      border-color: #58a6ff;
+    }
+
+    body.dark .nav-links {
+      background: #0d1117;
+      border: 1px solid #30363d;
+    }
+
+    body.dark #theme-toggle {
+      background: #238636;
+    }
+
+    body.dark #theme-toggle:hover {
+      background: #2ea043;
+    }
+
+    body.dark .info-card {
+      background: #161b22;
+      color: #e6edf3;
+      box-shadow: 0 18px 36px rgba(2, 6, 23, 0.45);
+    }
+
+    body.dark .info-card p {
+      color: #9da7bb;
     }
 
     body.dark .chat-box {
@@ -331,12 +534,52 @@
 
   <div id="app-shell" class="app-shell hidden" aria-hidden="true">
     <header>
-      <h1>🤖 Codex Agent</h1>
-      <p>Explore the power of AI automation — built for developers & creators.</p>
-      <button id="theme-toggle">🌙 Dark Mode</button>
+      <div class="header-bar">
+        <div class="brand">
+          <h1>🤖 Codex Agent</h1>
+          <p>Explore the power of AI automation — built for developers & creators.</p>
+        </div>
+        <div class="header-controls">
+          <nav class="primary-nav" aria-label="Main navigation">
+            <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="nav-links">
+              ☰ Menu
+            </button>
+            <ul id="nav-links" class="nav-links">
+              <li><a href="#overview">Overview</a></li>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#support">Support</a></li>
+            </ul>
+          </nav>
+          <button id="theme-toggle">🌙 Dark Mode</button>
+        </div>
+      </div>
     </header>
 
     <main>
+      <section id="overview" class="info-panels">
+        <article class="info-card">
+          <h2>Overview</h2>
+          <p>
+            Move fast with a conversational agent that understands context, automates
+            workflows, and keeps your projects humming without endless busywork.
+          </p>
+        </article>
+        <article id="features" class="info-card">
+          <h2>Features</h2>
+          <p>
+            Built-in prompts, reusable templates, and live integrations help you orchestrate
+            deployments, triage issues, and surface insights in seconds.
+          </p>
+        </article>
+        <article id="support" class="info-card">
+          <h2>Support</h2>
+          <p>
+            Need a hand? Jump into the chat below to get guided responses, curated resources,
+            and personalized follow-ups from your Codex Agent.
+          </p>
+        </article>
+      </section>
+
       <section class="chat-section">
         <div id="chat-box" class="chat-box" aria-live="polite">
           <div class="bot-msg">👋 Hi there! I'm Codex Agent. How can I assist you today?</div>
@@ -359,6 +602,8 @@
     const userInput = document.getElementById("user-input");
     const sendBtn = document.getElementById("send-btn");
     const themeToggle = document.getElementById("theme-toggle");
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
     const loginPage = document.getElementById("login-page");
     const appShell = document.getElementById("app-shell");
     const loginForm = document.getElementById("login-form");
@@ -471,6 +716,29 @@
       const isDark = document.body.classList.contains("dark");
       themeToggle.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
     });
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth < 768) {
+            navLinks.classList.remove("open");
+            menuToggle.setAttribute("aria-expanded", "false");
+          }
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth >= 768) {
+          navLinks.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
 
     // Focus the username field when the login page loads.
     window.addEventListener("load", () => {

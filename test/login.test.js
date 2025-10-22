@@ -22,6 +22,18 @@ assert(/<div id="app-shell" class="app-shell hidden"/.test(html),
 assert(html.includes("const VALID_CREDENTIALS = { username: \"demo\", password: \"codex123\" };"),
   "Credential guard definition missing from script.");
 
+assert(html.includes("id=\"menu-toggle\""),
+  "Primary navigation menu toggle should be present for mobile layouts.");
+
+assert(html.includes("<li><a href=\"#overview\">Overview</a></li>"),
+  "Navigation should expose an Overview anchor link.");
+
+assert(html.includes("<li><a href=\"#features\">Features</a></li>"),
+  "Navigation should expose a Features anchor link.");
+
+assert(html.includes("<li><a href=\"#support\">Support</a></li>"),
+  "Navigation should expose a Support anchor link.");
+
 assert(html.includes("sendBtn.disabled = true;"),
   "Chat send button should be disabled prior to login.");
 
