@@ -21,6 +21,106 @@
       transition: background 0.3s, color 0.3s;
     }
 
+    .login-page {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #0a2540 0%, #1b3b6f 100%);
+    }
+
+    .login-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 24px 60px rgba(10, 37, 64, 0.25);
+      text-align: center;
+      transition: background 0.3s, color 0.3s, transform 0.3s;
+    }
+
+    .login-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .login-card h1 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      color: #0a2540;
+    }
+
+    .login-card p {
+      margin-bottom: 22px;
+      color: #4a5568;
+    }
+
+    .login-card form {
+      text-align: left;
+    }
+
+    .login-card label {
+      display: block;
+      font-weight: 600;
+      margin-top: 18px;
+      color: #0a2540;
+    }
+
+    .login-card input {
+      width: 100%;
+      margin-top: 8px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e0;
+      outline: none;
+      transition: border 0.2s, box-shadow 0.2s;
+    }
+
+    .login-card input:focus {
+      border-color: #0a2540;
+      box-shadow: 0 0 0 3px rgba(10, 37, 64, 0.2);
+    }
+
+    .login-card button {
+      margin-top: 26px;
+      width: 100%;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 8px;
+      background: #0a2540;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .login-card button:hover {
+      background: #004080;
+      transform: translateY(-1px);
+    }
+
+    .login-card .hint {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: #556987;
+      text-align: center;
+    }
+
+    .login-message {
+      min-height: 18px;
+      margin-top: 14px;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .app-shell {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
     header {
       text-align: center;
       padding: 30px 15px;
@@ -65,13 +165,14 @@
       height: 400px;
       background: #fff;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       padding: 15px;
       overflow-y: auto;
       transition: background 0.3s;
     }
 
-    .bot-msg, .user-msg {
+    .bot-msg,
+    .user-msg {
       margin: 10px 0;
       padding: 10px 15px;
       border-radius: 10px;
@@ -126,6 +227,10 @@
       font-size: 0.9rem;
     }
 
+    .hidden {
+      display: none !important;
+    }
+
     /* DARK MODE */
     body.dark {
       background: #0d1117;
@@ -152,42 +257,183 @@
     body.dark footer {
       background: #161b22;
     }
+
+    body.dark .login-page {
+      background: linear-gradient(135deg, #0d1117 0%, #1f2937 100%);
+    }
+
+    body.dark .login-card {
+      background: #161b22;
+      color: #e6edf3;
+      box-shadow: 0 24px 60px rgba(2, 6, 23, 0.55);
+    }
+
+    body.dark .login-card p,
+    body.dark .login-card label,
+    body.dark .login-card .hint {
+      color: #c9d1d9;
+    }
+
+    body.dark .login-card input {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      color: #e6edf3;
+    }
+
+    body.dark .login-card input:focus {
+      border-color: #2ea043;
+      box-shadow: 0 0 0 3px rgba(46, 160, 67, 0.25);
+    }
+
+    body.dark .login-card button {
+      background: #2ea043;
+    }
+
+    body.dark .login-card button:hover {
+      background: #3fb950;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🤖 Codex Agent</h1>
-    <p>Explore the power of AI automation — built for developers & creators.</p>
-    <button id="theme-toggle">🌙 Dark Mode</button>
-  </header>
+  <section id="login-page" class="login-page" aria-labelledby="login-title">
+    <div class="login-card" role="dialog" aria-modal="true">
+      <h1 id="login-title">Welcome back</h1>
+      <p>Sign in to access your Codex Agent workspace.</p>
+      <form id="login-form" novalidate>
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          autocomplete="username"
+          required
+          placeholder="Enter your username"
+        />
 
-  <main>
-    <section class="chat-section">
-      <div id="chat-box" class="chat-box">
-        <div class="bot-msg">👋 Hi there! I'm Codex Agent. How can I assist you today?</div>
-      </div>
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          autocomplete="current-password"
+          required
+          placeholder="Enter your password"
+        />
 
-      <div class="input-area">
-        <input type="text" id="user-input" placeholder="Type your message..." />
-        <button id="send-btn">Send</button>
-      </div>
-    </section>
-  </main>
+        <button type="submit" id="login-submit">Log in</button>
+        <p class="hint">
+          Demo credentials: <strong>demo</strong> / <strong>codex123</strong>
+        </p>
+        <div id="login-message" class="login-message" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
 
-  <footer>
-    <p>© 2025 Codex Agent | Built by PROITBRIDGE</p>
-  </footer>
+  <div id="app-shell" class="app-shell hidden" aria-hidden="true">
+    <header>
+      <h1>🤖 Codex Agent</h1>
+      <p>Explore the power of AI automation — built for developers & creators.</p>
+      <button id="theme-toggle">🌙 Dark Mode</button>
+    </header>
+
+    <main>
+      <section class="chat-section">
+        <div id="chat-box" class="chat-box" aria-live="polite">
+          <div class="bot-msg">👋 Hi there! I'm Codex Agent. How can I assist you today?</div>
+        </div>
+
+        <div class="input-area">
+          <input type="text" id="user-input" placeholder="Type your message..." aria-label="Message" />
+          <button id="send-btn">Send</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Codex Agent | Built by PROITBRIDGE</p>
+    </footer>
+  </div>
 
   <script>
     const chatBox = document.getElementById("chat-box");
     const userInput = document.getElementById("user-input");
     const sendBtn = document.getElementById("send-btn");
     const themeToggle = document.getElementById("theme-toggle");
+    const loginPage = document.getElementById("login-page");
+    const appShell = document.getElementById("app-shell");
+    const loginForm = document.getElementById("login-form");
+    const loginMessage = document.getElementById("login-message");
+    const loginSubmit = document.getElementById("login-submit");
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
+
+    const VALID_CREDENTIALS = { username: "demo", password: "codex123" };
+
+    // Disable chat interaction until the user logs in.
+    sendBtn.disabled = true;
+    userInput.disabled = true;
 
     sendBtn.addEventListener("click", sendMessage);
     userInput.addEventListener("keypress", function (e) {
       if (e.key === "Enter") sendMessage();
     });
+
+    loginForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      handleLogin();
+    });
+
+    function handleLogin() {
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value;
+
+      loginMessage.textContent = "";
+
+      if (!username || !password) {
+        loginMessage.style.color = "#c53030";
+        loginMessage.textContent = "Please fill in both fields to continue.";
+        return;
+      }
+
+      loginSubmit.disabled = true;
+      loginSubmit.textContent = "Signing in...";
+
+      setTimeout(() => {
+        const isValid =
+          username.toLowerCase() === VALID_CREDENTIALS.username &&
+          password === VALID_CREDENTIALS.password;
+
+        if (isValid) {
+          loginMessage.style.color = "#2ea043";
+          loginMessage.textContent = "Success! Redirecting to the chat...";
+          finalizeLogin();
+        } else {
+          loginMessage.style.color = "#c53030";
+          loginMessage.textContent = "Invalid credentials. Try demo / codex123.";
+          loginSubmit.disabled = false;
+          loginSubmit.textContent = "Log in";
+          passwordInput.focus();
+        }
+      }, 450);
+    }
+
+    function finalizeLogin() {
+      sendBtn.disabled = false;
+      userInput.disabled = false;
+      loginPage.classList.add("hidden");
+      loginPage.setAttribute("aria-hidden", "true");
+      appShell.classList.remove("hidden");
+      appShell.removeAttribute("aria-hidden");
+      loginSubmit.textContent = "Log in";
+      loginSubmit.disabled = false;
+      userInput.focus();
+
+      const welcomeMsg = document.createElement("div");
+      welcomeMsg.classList.add("bot-msg");
+      welcomeMsg.textContent = "🎉 You're logged in! How can I help you today?";
+      chatBox.appendChild(welcomeMsg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
 
     function sendMessage() {
       const msg = userInput.value.trim();
@@ -224,6 +470,11 @@
       document.body.classList.toggle("dark");
       const isDark = document.body.classList.contains("dark");
       themeToggle.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+    });
+
+    // Focus the username field when the login page loads.
+    window.addEventListener("load", () => {
+      usernameInput.focus();
     });
   </script>
 </body>
